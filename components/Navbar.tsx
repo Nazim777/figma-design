@@ -1,18 +1,21 @@
-'use client'
-import Link from 'next/link';
-import React, { useState } from 'react';
+import React, { useState } from 'react'
+import Link from 'next/link'
+import { Bell, MessageSquareText, Moon } from 'lucide-react';
+import { Switch } from "@/components/ui/switch"
 
-export default function Home() {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-  };
+
+const Navbar = () => {
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    
+      const toggleMobileMenu = () => {
+        setIsMobileMenuOpen(!isMobileMenuOpen);
+      };
   return (
-   <nav className="bg-gray-800 p-4">
+    <nav className="bg-gray-800 p-4">
       <div className="container mx-auto flex flex-wrap items-center justify-between">
         <Link href="/" className="text-white text-2xl font-bold">
-          My Website
+         power quest
         </Link>
         <button
           onClick={toggleMobileMenu}
@@ -43,24 +46,22 @@ export default function Home() {
         >
           <ul className="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-800 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-transparent md:p-0">
             <li>
-              <Link
-                href="/design-1"
-                className="block py-2 pl-3 pr-4 text-gray-300 rounded hover:bg-gray-700 md:hover:bg-transparent md:border-0 md:hover:text-white md:p-0"
-              >
-                Design 1
-              </Link>
+            <MessageSquareText className='bg-outline'/>
             </li>
             <li>
-              <Link
-                href="/design-2"
-                className="block py-2 pl-3 pr-4 text-gray-300 rounded hover:bg-gray-700 md:hover:bg-transparent md:border-0 md:hover:text-white md:p-0"
-              >
-                Design-2
-              </Link>
+            <Moon />
+            </li>
+            <li>
+            <Bell />
+            </li>
+            <li>
+                <Switch/>
             </li>
           </ul>
         </div>
       </div>
     </nav>
-  );
+  )
 }
+
+export default Navbar
