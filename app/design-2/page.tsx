@@ -95,53 +95,40 @@ const Dashboard = () => {
             </Card>
           </div>
 
+          <div className="space-y-4">
+            <Card
+              className="relative bg-cover bg-center p-4 mb-3 rounded-lg shadow-2xl border-none flex flex-col justify-between items-center"
+              style={{
+                backgroundImage: "url('/figma.jpg')", // Replace with the actual image path
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+              }}
+            >
+              <div className="flex justify-between w-full mb-3">
+                <div className="flex items-center">
+                  <h3 className="text-white mr-2">Point History</h3>
+                </div>
+                <div className="flex items-center">
+                  <h3 className="text-white mr-2">54</h3>
+                  <BadgeCent className="text-yellow-500" />
+                </div>
+              </div>
 
+              <div className="flex justify-center w-full mb-4 mt-10">
+                <h1 className="text-gray-100 font-bold leading-none shadow-lg text-center">
+                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                  Delectus porro ut ratione veniam illum laudantium eius
+                  commodi.
+                </h1>
+              </div>
 
+              <button className="bg-blue-400 text-black px-4 py-2 rounded-lg font-semibold hover:bg-yellow-300 transition">
+                Play Now
+              </button>
 
-
-<div className="space-y-4">
-  <Card
-    className="relative bg-cover bg-center p-4 mb-3 rounded-lg shadow-2xl border-none flex flex-col justify-between items-center"
-    style={{
-      backgroundImage: "url('/figma.jpg')", // Replace with the actual image path
-      backgroundSize: "cover",
-      backgroundPosition: "center",
-    }}
-  >
-    <div className="flex justify-between w-full mb-3">
-      <div className="flex items-center">
-        <h3 className="text-white mr-2">Point History</h3>
-      </div>
-      <div className="flex items-center">
-        <h3 className="text-white mr-2">54</h3>
-        <BadgeCent className="text-yellow-500" />
-      </div>
-    </div>
-
-    <div className="flex justify-center w-full mb-4 mt-10">
-      <h1 className="text-gray-100 font-bold leading-none shadow-lg text-center">
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Delectus porro ut ratione veniam illum laudantium eius commodi.
-      </h1>
-    </div>
-
-    <button className="bg-blue-400 text-black px-4 py-2 rounded-lg font-semibold hover:bg-yellow-300 transition">
-      Play Now
-    </button>
-
-    <div className="absolute inset-0 bg-black/40 rounded-lg"></div>
-  </Card>
-</div>
-
-
-
-
-
-
-
-
-
-
-
+              <div className="absolute inset-0 bg-black/40 rounded-lg"></div>
+            </Card>
+          </div>
         </div>
 
         {/* right section */}
@@ -193,8 +180,11 @@ const Dashboard = () => {
           </div>
 
           <Card className="bg-[#1E1E1E] p-5 rounded-lg shadow-lg ">
-            <div className="flex justify-end gap-4 items-center mb-3">
-              <div>
+            <div className="relative flex flex-col items-end p-4 mb-3">
+              <div className="absolute top-6 right-0 p-2 rounded-full border-2 border-gray-400 cursor-pointer bg-white">
+                <SquarePen className="h-4 w-4 text-gray-500" />
+              </div>
+              <ul className="text-sm text-gray-400 list-disc list-inside text-right mr-8">
                 <h2 className="text-lg font-semibold text-white">
                   Write an Essay
                 </h2>
@@ -202,19 +192,11 @@ const Dashboard = () => {
                   Write an essay about the topic of your choice. Include at
                   least three paragraphs with references in MLA format.
                 </p>
-              </div>
-
-              <ul className="text-sm text-gray-400 list-disc list-inside mb-4">
                 <li>At least 500 words</li>
                 <li>Must include three references</li>
                 <li>Use MLA format</li>
               </ul>
-
-              <div className="p-2 rounded-full border-2 border-gray-400 cursor-pointer bg-white">
-                <SquarePen className="h-4 w-4 text-gray-500" />
-              </div>
             </div>
-
             <div className="flex justify-center">
               <Button className="bg-blue-600 hover:bg-blue-500 text-white">
                 Start the task
