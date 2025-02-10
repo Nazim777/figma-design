@@ -20,25 +20,25 @@ const Dashboard = () => {
     <div className="bg-[#1E1E1E] min-h-screen text-white p-6 font-sans">
       {/* Header */}
       <div className="flex justify-between items-center mx-10 mb-6 border-b border-gray-700 pb-4">
+        <h1 className="text-xl font-bold">Empower Quest</h1>
         <div className="flex items-center gap-4">
-          <div className="cursor-pointer">
-            <Switch className="bg-black border-2 border-white" />
-          </div>
           <div className="p-2 rounded-full border-2 border-gray-400 cursor-pointer">
-            <Bell className="h-5 w-5 text-gray-400" />
+            <Moon className="h-5 w-5 text-gray-400" />
           </div>
           <div className="p-2 rounded-full border-2 border-gray-400 cursor-pointer">
             <MessageSquareText className="h-5 w-5 text-gray-400" />
           </div>
           <div className="p-2 rounded-full border-2 border-gray-400 cursor-pointer">
-            <Moon className="h-5 w-5 text-gray-400" />
+            <Bell className="h-5 w-5 text-gray-400" />
+          </div>
+          <div className="  cursor-pointer">
+            <Switch className="bg-black border-2 border-white" />
           </div>
         </div>
-        <h1 className="text-xl font-bold">Empower Quest</h1>
       </div>
 
       {/* welcome */}
-      <div className="flex justify-end mx-10 my-10">
+      <div className="flex justify-start mx-10 my-10">
         <div>
           <h4 className="text-blue-500">Welcome Liam</h4>
           <span>Ready to complete your task?</span>
@@ -99,7 +99,7 @@ const Dashboard = () => {
             <Card
               className="relative bg-cover bg-center p-4 mb-3 rounded-lg shadow-2xl border-none flex flex-col justify-between items-center"
               style={{
-                backgroundImage: "url('/figma.jpg')", // Replace with the actual image path
+                backgroundImage: "url('/figma.jpg')",
                 backgroundSize: "cover",
                 backgroundPosition: "center",
               }}
@@ -142,41 +142,18 @@ const Dashboard = () => {
           </div>
 
           <div className="space-y-4 mt-6">
-            <Card className="bg-[#1E1E1E] p-4 mb-3 rounded-lg shadow-lg flex justify-between items-center">
-              <div className="flex items-center gap-2">
-                <Button className="bg-white  text-gray-500 px-4 py-2 text-sm">
-                  Details
-                </Button>
-              </div>
-
-              <div className="flex gap-3 items-center">
-                <div>
-                  <p className="text-sm text-white">10/14/2023 | 12:00 PM</p>
-                </div>
-              </div>
-              <div className="flex gap-3 items-center">
-                <div>
-                  <p className="text-sm text-white">1 coin</p>
-                </div>
-                <div className="p-2 rounded-full border-2 border-gray-400 cursor-pointer bg-yellow-500"></div>
-              </div>
-
-              <div className="flex gap-3 items-center">
-                <div>
-                  <div className="flex gap-2">
-                    <h2 className="text-lg font-semibold text-white">
-                      Science Lab Report
-                    </h2>
-                  </div>
-                  <p className="text-sm text-white">
-                    write a lab report for the experiment
-                  </p>
-                </div>
-                <div className="p-2 rounded-full border-2 border-gray-400 cursor-pointer bg-white">
-                  <FlaskConical className="h-4 w-4  bg-white" />
-                </div>
-              </div>
-            </Card>
+            <CustomCardDiff
+              backgroundColor="bg-[#1E1E1E]"
+              title="Math Problem"
+              description="solve algebra problem 1-5"
+              dueDate="10/14/2023 | 12:00 PM"
+              coinValue="3"
+              icon={<Calculator h-4 w-4 bg-white />}
+              buttonText="Details"
+              iconColor="text-yellow-500"
+              dateColor="text-gray-500"
+              buttonBg={true}
+            />
           </div>
 
           <Card className="bg-[#1E1E1E] p-5 rounded-lg shadow-lg ">

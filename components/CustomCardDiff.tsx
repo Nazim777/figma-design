@@ -27,19 +27,31 @@ const CustomCard: FC<CardProps> = ({
   iconColor,
   dateColor,
   buttonBg,
+ 
 }) => {
   return (
     <Card
       className={`p-4 mb-3 rounded-lg shadow-lg flex justify-between items-center ${backgroundColor}`}
     >
-      <div className="flex items-center gap-2">
-        <Button
-          className={`px-4 py-2 text-sm ${
-            buttonBg ? "bg-white text-gray-500" : "bg-blue-500 text-white"
-          }`}
-        >
-          {buttonText}
-        </Button>
+      <div className="p-2 rounded-full border-2 border-gray-400 cursor-pointer bg-white">
+        {icon ? (
+          icon
+        ) : (
+          <div className="p-3 rounded-full border-3 border-gray-400 cursor-pointer bg-white"></div>
+        )}
+      </div>
+
+      <div className="flex gap-3 items-center">
+        <div>
+          <div className="flex gap-2">
+           
+            <h2 className="text-lg font-semibold text-white">{title}</h2>
+            <CircleChevronRight
+              className={`${iconColor ? iconColor : "text-green-500"}`}
+            />
+          </div>
+          <p className="text-sm text-white">{description}</p>
+        </div>
       </div>
 
       <div className="flex gap-3 items-center">
@@ -52,30 +64,21 @@ const CustomCard: FC<CardProps> = ({
       </div>
 
       <div className="flex gap-3 items-center">
+      <div className="p-2 rounded-full border-2 border-gray-400 cursor-pointer bg-yellow-500"></div>
         <div>
           <p className="text-sm text-white">{coinValue} coin</p>
         </div>
-        <div className="p-2 rounded-full border-2 border-gray-400 cursor-pointer bg-yellow-500"></div>
+       
       </div>
 
-      <div className="flex gap-3 items-center">
-        <div>
-          <div className="flex gap-2">
-            <CircleChevronRight
-              className={`${iconColor ? iconColor : "text-green-500"}`}
-            />
-            <h2 className="text-lg font-semibold text-white">{title}</h2>
-          </div>
-          <p className="text-sm text-white">{description}</p>
-        </div>
-
-        <div className="p-2 rounded-full border-2 border-gray-400 cursor-pointer bg-white">
-          {icon ? (
-            icon
-          ) : (
-            <div className="p-3 rounded-full border-3 border-gray-400 cursor-pointer bg-white"></div>
-          )}
-        </div>
+      <div className="flex items-center gap-2">
+        <Button
+          className={`px-4 py-2 text-sm ${
+            buttonBg ? "bg-white text-gray-500" : "bg-blue-500 text-white"
+          }`}
+        >
+          {buttonText}
+        </Button>
       </div>
     </Card>
   );
