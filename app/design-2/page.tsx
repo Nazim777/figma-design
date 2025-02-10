@@ -1,6 +1,7 @@
+"use client";
 import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import CustomCardDiff from "@/components/CustomCardDiff";
+import BaseTemplate from "../../components/BaseTemplate";
+import { motion } from "framer-motion";
 
 import {
   Moon,
@@ -8,16 +9,22 @@ import {
   MessageSquareText,
   ChevronDown,
   ChevronsRight,
-  FlaskConical,
-  SquarePen,
-  Calculator,
   BadgeCent,
+  Home,
+  CalendarCheck,
+  ShieldHalf,
+  CircleSlash,
+  ArrowLeft,
+  Activity,
 } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
+import { useState } from "react";
+import Timer from "@/components/Timer";
 
 const Dashboard = () => {
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   return (
-    <div className="bg-[#1E1E1E] min-h-screen text-white p-6 font-sans">
+    <div className="bg-[#0B0E14] min-h-screen text-white p-6 font-sans">
       {/* Header */}
       <div className="flex justify-between items-center mx-10 mb-6 border-b border-gray-700 pb-4">
         <h1 className="text-xl font-bold">Empower Quest</h1>
@@ -48,27 +55,39 @@ const Dashboard = () => {
       {/* 2 section */}
 
       <div className="flex flex-row ">
-        {/* left section */}
+        {/* left section  */}
+        <div className="bg-[#1E222A] py-5 px-5 mx-10 basis-2/3">
+          <div className="mb flex justify-between ">
+            <h6 className="text-gray-500">Your Task</h6>
+            <span className="text-gray-500 flex">
+              <ChevronDown /> Filter | All tasks <ChevronsRight />
+            </span>
+          </div>
+          <div className="space-y-4 mt-6">
+            <BaseTemplate />
+          </div>
+        </div>
+
+        {/* right section */}
         <div className="basis-1/3 mx-10">
           <div className="space-y-4 ">
-            <Card className="bg-[#1E293B] p-4 mb-3 rounded-lg shadow-lg border-none flex flex-col justify-between items-center">
+            <Card className="bg-[#1E222A] p-4 mb-3 rounded-lg shadow-lg border-none flex flex-col justify-between items-center">
               <div className="flex justify-between w-full mb-3">
                 <div className="flex items-center">
-                  <ChevronDown />
-                  <h4 className="text-gray-500 ml-2">Weekly</h4>
-                </div>
-
-                <div className="flex items-center">
-                  <h3 className="text-white mr-2">Child Progress</h3>
                   <div className="p-2 rounded-full border-2 border-gray-400 cursor-pointer bg-yellow-500"></div>
+                  <h3 className="text-white ml-2">Child Progress</h3>
+                </div>
+                <div className="flex items-center">
+                  <h4 className="text-gray-500 ml-2">Weekly</h4>
+                  <ChevronDown className="text-gray-500" />
                 </div>
               </div>
 
               {/* Progress Bar Section */}
               <div className="w-full mb-4 mt-16">
                 <div className="flex justify-between mb-2">
-                  <span className="text-sm text-gray-400">Ask Completed</span>
-                  <span className="text-sm text-gray-400">81%</span>
+                  <span className="text-white text-[20px]">Task Completed</span>
+                  <span className=" text-white text-[30px]">81%</span>
                 </div>
                 <div className="relative w-full h-2 bg-gray-300 rounded-full">
                   <div
@@ -80,19 +99,61 @@ const Dashboard = () => {
             </Card>
           </div>
 
-          <div className="space-y-4 ">
-            <Card className="bg-[#0c0b0b] p-4 mb-3 rounded-lg shadow-2xl border-none flex flex-col justify-between items-center">
-              <div className="flex justify-end w-full mb-3">
-                <div className="flex items-center">
-                  <h3 className="text-white mr-2">Time</h3>
-                </div>
+          <div
+            className="absolute right-10 z-10 bottom-[-10px] cursor-pointer p-2 rounded-full  bg-[#041A43] hover:bg-[rgba(4, 26, 67, 1)] transition-colors"
+            onClick={() => setIsDrawerOpen(!isDrawerOpen)}
+          >
+            <Activity />
+          </div>
+
+          {isDrawerOpen && (
+            <motion.div
+              initial={{ x: -300 }}
+              animate={{ x: 0 }}
+              exit={{ x: -300 }}
+              transition={{ duration: 0.3 }}
+              className="fixed top-0 left-0 w-64 h-full bg-[#1E222A] shadow-lg p-5 z-50"
+            >
+              <div className="flex justify-between items-center p-4 border-b border-gray-600">
+                <h2 className="text-lg text-blue-400 font-bold">Quick Nav</h2>
               </div>
-              <div className="flex justify-center w-full mb-4">
-                <h1 className="text-gray-500 font-bold text-[120px] leading-none shadow-lg">
-                  11:59:50
-                </h1>
+
+              <ul className="text-white space-y-4 absolute bottom-20">
+                <li className="flex items-center space-x-3 cursor-pointer hover:bg-gray-700 p-2 rounded-md">
+                  <Home className="h-5 w-5 text-gray-300" />
+                  <span>Home</span>
+                </li>
+                <li className="flex items-center space-x-3 cursor-pointer hover:bg-gray-700 p-2 rounded-md">
+                  <Bell className="h-5 w-5 text-gray-300" />
+                  <span>Notification</span>
+                </li>
+                <li className="flex items-center space-x-3 cursor-pointer hover:bg-gray-700 p-2 rounded-md">
+                  <CalendarCheck className="h-5 w-5 text-gray-300" />
+                  <span>All tasks</span>
+                </li>
+                <li className="flex items-center space-x-3 cursor-pointer hover:bg-gray-700 p-2 rounded-md">
+                  <ShieldHalf className="h-5 w-5 text-gray-300" />
+                  <span>Rank</span>
+                </li>
+                <li className="flex items-center space-x-3 cursor-pointer hover:bg-gray-700 p-2 rounded-md">
+                  <CircleSlash className="h-5 w-5 text-gray-300" />
+                  <span>Profile</span>
+                </li>
+              </ul>
+              <hr className="border-gray-600 absolute bottom-16 w-[220px] overflow-hidden" />
+
+              <div
+                className="text-white flex gap-4 text-lg mb-4 absolute bottom-4"
+                onClick={() => setIsDrawerOpen(false)}
+              >
+                <ArrowLeft className="cursor-pointer" />
+                <button>Back</button>
               </div>
-            </Card>
+            </motion.div>
+          )}
+
+          <div className="space-y-4 mb-4 ">
+            <Timer />
           </div>
 
           <div className="space-y-4">
@@ -115,136 +176,19 @@ const Dashboard = () => {
               </div>
 
               <div className="flex justify-center w-full mb-4 mt-10">
-                <h1 className="text-gray-100 font-bold leading-none shadow-lg text-center">
+                <h1 className="text-white font-bold leading-none shadow-lg text-center">
                   Lorem ipsum dolor sit amet consectetur, adipisicing elit.
                   Delectus porro ut ratione veniam illum laudantium eius
                   commodi.
                 </h1>
               </div>
 
-              <button className="bg-blue-400 text-black px-4 py-2 rounded-lg font-semibold hover:bg-yellow-300 transition">
+              <button className="bg-[#2B416B] cursor-pointer text-black px-4 py-2 rounded-lg font-semibold hover:bg-yellow-300 transition">
                 Play Now
               </button>
 
               <div className="absolute inset-0 bg-black/40 rounded-lg"></div>
             </Card>
-          </div>
-        </div>
-
-        {/* right section */}
-
-        <div className="bg-[#1E293B] py-5 px-5 mx-10 basis-2/3">
-          <div className="mb flex justify-between ">
-            <span className="text-gray-500 flex">
-              <ChevronDown /> Filter | Move to Dashboard <ChevronsRight />
-            </span>
-            <h6 className="text-gray-500">Your Task</h6>
-          </div>
-
-          <div className="space-y-4 mt-6">
-            <CustomCardDiff
-              backgroundColor="bg-[#1E1E1E]"
-              title="Math Problem"
-              description="solve algebra problem 1-5"
-              dueDate="10/14/2023 | 12:00 PM"
-              coinValue="3"
-              icon={<Calculator h-4 w-4 bg-white />}
-              buttonText="Details"
-              iconColor="text-yellow-500"
-              dateColor="text-gray-500"
-              buttonBg={true}
-            />
-          </div>
-
-          <Card className="bg-[#1E1E1E] p-5 rounded-lg shadow-lg ">
-            <div className="relative flex flex-col items-end p-4 mb-3">
-              <div className="absolute top-6 right-0 p-2 rounded-full border-2 border-gray-400 cursor-pointer bg-white">
-                <SquarePen className="h-4 w-4 text-gray-500" />
-              </div>
-              <ul className="text-sm text-gray-400 list-disc list-inside text-right mr-8">
-                <h2 className="text-lg font-semibold text-white">
-                  Write an Essay
-                </h2>
-                <p className="text-sm text-gray-300 mb-3">
-                  Write an essay about the topic of your choice. Include at
-                  least three paragraphs with references in MLA format.
-                </p>
-                <li>At least 500 words</li>
-                <li>Must include three references</li>
-                <li>Use MLA format</li>
-              </ul>
-            </div>
-            <div className="flex justify-center">
-              <Button className="bg-blue-600 hover:bg-blue-500 text-white">
-                Start the task
-              </Button>
-            </div>
-          </Card>
-
-          <div className="space-y-4 mt-6">
-            <CustomCardDiff
-              backgroundColor="bg-[#1E1E1E]"
-              title="Math Problem"
-              description="solve algebra problem 1-5"
-              dueDate="10/14/2023 | 12:00 PM"
-              coinValue="3"
-              icon={<Calculator h-4 w-4 bg-white />}
-              buttonText="Details"
-              iconColor="text-yellow-500"
-              dateColor="text-gray-500"
-              buttonBg={true}
-            />
-          </div>
-
-          <div className="space-y-4 mt-6">
-            <CustomCardDiff
-              backgroundColor="bg-[#1E1E1E]"
-              title="Vocabulary Quiz"
-              description="study and take quiz"
-              dueDate="10/14/2023 | 12:00 PM"
-              coinValue="2"
-              buttonText="Details"
-              iconColor="text-yellow-500"
-              dateColor="text-gray-500"
-              buttonBg={true}
-            />
-          </div>
-
-          <div className="space-y-4 mt-6">
-            <CustomCardDiff
-              backgroundColor="bg-[#1E1E1E]"
-              title="Write an Essay"
-              description="Write a 500 word essay"
-              dueDate="10/14/2023 | 12:00 PM"
-              coinValue="1"
-              icon={<SquarePen className="h-4 w-4 bg-white" />}
-              buttonText="Details"
-              iconColor="text-red-500"
-              dateColor="text-red-500"
-              buttonBg={true}
-            />
-          </div>
-
-          <div className="space-y-4 mt-6">
-            <CustomCardDiff
-              backgroundColor="bg-[#1E1E1E]"
-              title="Vocabulary Quiz"
-              description="study and take quiz"
-              dueDate="10/14/2023 | 12:00 PM"
-              coinValue="1"
-              buttonText="completed"
-            />
-          </div>
-          <div className="space-y-4 mt-6">
-            <CustomCardDiff
-              backgroundColor="bg-[#1E1E1E]"
-              title="Vocabulary Quiz"
-              description="Write a lab report for the experiment"
-              dueDate="10/14/2023 | 12:00 PM"
-              coinValue="1"
-              icon={<FlaskConical className="h-4 w-4 bg-white" />}
-              buttonText="completed"
-            />
           </div>
         </div>
       </div>

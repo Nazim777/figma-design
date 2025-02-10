@@ -27,7 +27,6 @@ const CustomCard: FC<CardProps> = ({
   iconColor,
   dateColor,
   buttonBg,
- 
 }) => {
   return (
     <Card
@@ -44,7 +43,6 @@ const CustomCard: FC<CardProps> = ({
       <div className="flex gap-3 items-center">
         <div>
           <div className="flex gap-2">
-           
             <h2 className="text-lg font-semibold text-white">{title}</h2>
             <CircleChevronRight
               className={`${iconColor ? iconColor : "text-green-500"}`}
@@ -56,19 +54,22 @@ const CustomCard: FC<CardProps> = ({
 
       <div className="flex gap-3 items-center">
         <div>
-          <p className={`text-sm ${dateColor ? dateColor : "text-green-500"}`}>
-            {" "}
-            {dueDate}
-          </p>
+          {dueDate.split("|").map((part, index) => (
+            <p
+              key={index}
+              className={`text-sm ${dateColor ? dateColor : "text-green-500"}`}
+            >
+              {part.trim()}
+            </p>
+          ))}
         </div>
       </div>
 
       <div className="flex gap-3 items-center">
-      <div className="p-2 rounded-full border-2 border-gray-400 cursor-pointer bg-yellow-500"></div>
+        <div className="p-2 rounded-full border-2 border-gray-400 cursor-pointer bg-yellow-500"></div>
         <div>
           <p className="text-sm text-white">{coinValue} coin</p>
         </div>
-       
       </div>
 
       <div className="flex items-center gap-2">
